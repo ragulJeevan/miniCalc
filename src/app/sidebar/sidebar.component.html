@@ -1,0 +1,33 @@
+<mat-sidenav-container class="sidenav-container" style="background-color:black">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'" style="background-color:slategrey"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar class="text-center"><u>Menu</u></mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/mini">STANDARD</a>
+      <a mat-list-item routerLink="/"[disabled]="true">SCIENTIFIC <mat-icon>lock</mat-icon></a>
+      <a mat-list-item routerLink="/age">AGE CALCULATOR</a>
+      <a mat-list-item routerLink="/currency" [disabled]="true">CURRENCY CONVERTER <mat-icon>lock</mat-icon></a>
+      <a mat-list-item routerLink="/converter" [disabled]="true">UNIT CONVERTER <mat-icon>lock</mat-icon></a>
+      <a mat-list-item routerLink="/"[disabled]="true">PROGRAMMING <mat-icon>lock</mat-icon></a>
+      <a mat-list-item routerLink="/"[disabled]="true">TAX CALCULATOR <mat-icon>lock</mat-icon></a>
+      <a mat-list-item routerLink="/emi"[disabled]="true">LOAN CALCULATOR <mat-icon>lock</mat-icon></a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span><b>CALCULATOR</b></span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
